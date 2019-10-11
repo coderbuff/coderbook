@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>简单搜索 | CoderBook</title>
+    <meta name="description" content="CoderBook">
+    
+    
+    <link rel="preload" href="/assets/css/0.styles.4c5f93b7.css" as="style"><link rel="preload" href="/assets/js/app.ada1b567.js" as="script"><link rel="preload" href="/assets/js/2.abace2d1.js" as="script"><link rel="preload" href="/assets/js/12.9da86373.js" as="script"><link rel="prefetch" href="/assets/js/10.048b2296.js"><link rel="prefetch" href="/assets/js/11.6f32ae89.js"><link rel="prefetch" href="/assets/js/13.090f1492.js"><link rel="prefetch" href="/assets/js/14.46744065.js"><link rel="prefetch" href="/assets/js/15.de197aa8.js"><link rel="prefetch" href="/assets/js/16.60357a4b.js"><link rel="prefetch" href="/assets/js/17.e4e8d195.js"><link rel="prefetch" href="/assets/js/18.4f18d69c.js"><link rel="prefetch" href="/assets/js/3.8157aed2.js"><link rel="prefetch" href="/assets/js/4.538aa75a.js"><link rel="prefetch" href="/assets/js/5.77a3aff8.js"><link rel="prefetch" href="/assets/js/6.290384a9.js"><link rel="prefetch" href="/assets/js/7.93efe7bf.js"><link rel="prefetch" href="/assets/js/8.4865de69.js"><link rel="prefetch" href="/assets/js/9.05ef765c.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.4c5f93b7.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">CoderBook</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">首页</a></div><div class="nav-item"><a href="/es6/index.html" class="nav-link">ElasticSearch6.x</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">首页</a></div><div class="nav-item"><a href="/es6/index.html" class="nav-link">ElasticSearch6.x</a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/es6/" class="sidebar-link">写在前面的话</a></li><li><a href="/es6/chapter1.html" class="sidebar-link">准备工作</a></li><li><a href="/es6/chapter2.html" class="sidebar-link">基本术语</a></li><li><a href="/es6/chapter3.html" class="sidebar-link">简单的API</a></li><li><a href="/es6/chapter4.html" class="sidebar-link">分词</a></li><li><a href="/es6/chapter5.html" class="active sidebar-link">简单搜索</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/es6/chapter5.html#数据准备" class="sidebar-link">数据准备</a></li><li class="sidebar-sub-header"><a href="/es6/chapter5.html#按查询条件数量维度" class="sidebar-link">按查询条件数量维度</a></li><li class="sidebar-sub-header"><a href="/es6/chapter5.html#按等值、范围查询维度" class="sidebar-link">按等值、范围查询维度</a></li><li class="sidebar-sub-header"><a href="/es6/chapter5.html#分页搜索" class="sidebar-link">分页搜索</a></li></ul></li><li><a href="/es6/chapter6.html" class="sidebar-link">Java客户端（上）</a></li><li><a href="/es6/chapter7.html" class="sidebar-link">父-子关系文档</a></li><li><a href="/es6/chapter8.html" class="sidebar-link">复杂搜索</a></li><li><a href="/es6/chapter9.html" class="sidebar-link">Java客户端（下）</a></li><li><a href="/es6/chapter10.html" class="sidebar-link">实战：ELK日志分析系统</a></li><li><a href="/es6/chapter11.html" class="sidebar-link">实战：多数据源同步</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="简单搜索"><a href="#简单搜索" aria-hidden="true" class="header-anchor">#</a> 简单搜索</h1> <blockquote><p>众里寻他千百度</p></blockquote> <p>搜索是ES的核心，本节讲解一些基本的简单的搜索。</p> <p>掌握ES搜索查询的RESTful的API犹如掌握关系型数据库的SQL语句，尽管Java客户端API为我们不需要我们去实际编写RESTful的API，但在生产环境中，免不了在线上执行查询语句做数据统计供产品经理等使用。</p> <h2 id="数据准备"><a href="#数据准备" aria-hidden="true" class="header-anchor">#</a> 数据准备</h2> <p>首先创建一个名为user的Index，并创建一个student的Type，Mapping映射一共有如下几个字段：</p> <ol><li><p>创建名为user的Index    <code>PUT http://localhost:9200/user</code></p></li> <li><p>创建名为student的Type，且指定字段name和address的分词器为<code>ik_smart</code>。</p> <div class="language-json extra-class"><pre class="language-json"><code>POST http<span class="token operator">:</span><span class="token comment">//localhost:9200/user/student/_mapping</span>
+<span class="token punctuation">{</span>
+	<span class="token property">&quot;properties&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+		<span class="token property">&quot;name&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+			<span class="token property">&quot;type&quot;</span><span class="token operator">:</span><span class="token string">&quot;text&quot;</span><span class="token punctuation">,</span>
+			<span class="token property">&quot;analyzer&quot;</span><span class="token operator">:</span><span class="token string">&quot;ik_smart&quot;</span>
+		<span class="token punctuation">}</span><span class="token punctuation">,</span>
+		<span class="token property">&quot;age&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+			<span class="token property">&quot;type&quot;</span><span class="token operator">:</span><span class="token string">&quot;short&quot;</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div></li></ol> <p>经过上一章<strong>分词</strong>的学习我们把<code>text</code>类型都指定为<code>ik_smart</code>分词器。</p> <p>插入以下数据。</p> <div class="language-json extra-class"><pre class="language-json"><code>POST localhost<span class="token operator">:</span><span class="token number">9200</span>/user/student
+<span class="token punctuation">{</span>
+    <span class="token property">&quot;name&quot;</span><span class="token operator">:</span><span class="token string">&quot;kevin&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;age&quot;</span><span class="token operator">:</span><span class="token number">25</span>
+<span class="token punctuation">}</span>
+</code></pre></div><div class="language-json extra-class"><pre class="language-json"><code>POST localhost<span class="token operator">:</span><span class="token number">9200</span>/user/student
+<span class="token punctuation">{</span>
+    <span class="token property">&quot;name&quot;</span><span class="token operator">:</span><span class="token string">&quot;kangkang&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;age&quot;</span><span class="token operator">:</span><span class="token number">26</span>
+<span class="token punctuation">}</span>
+</code></pre></div><div class="language-json extra-class"><pre class="language-json"><code>POST localhost<span class="token operator">:</span><span class="token number">9200</span>/user/student
+<span class="token punctuation">{</span>
+    <span class="token property">&quot;name&quot;</span><span class="token operator">:</span><span class="token string">&quot;mike&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;age&quot;</span><span class="token operator">:</span><span class="token number">22</span>
+<span class="token punctuation">}</span>
+</code></pre></div><div class="language-json extra-class"><pre class="language-json"><code>POST localhost<span class="token operator">:</span><span class="token number">9200</span>/user/student
+<span class="token punctuation">{</span>
+    <span class="token property">&quot;name&quot;</span><span class="token operator">:</span><span class="token string">&quot;kevin2&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;age&quot;</span><span class="token operator">:</span><span class="token number">25</span>
+<span class="token punctuation">}</span>
+</code></pre></div><div class="language-jso extra-class"><pre class="language-text"><code>POST localhost:9200/user/student
+{
+    &quot;name&quot;:&quot;kevin yu&quot;,
+    &quot;age&quot;:21
+}
+</code></pre></div><h2 id="按查询条件数量维度"><a href="#按查询条件数量维度" aria-hidden="true" class="header-anchor">#</a> 按查询条件数量维度</h2> <h3 id="无条件搜索"><a href="#无条件搜索" aria-hidden="true" class="header-anchor">#</a> 无条件搜索</h3> <p><code>GET http://localhost:9200/user/student/_search?pretty</code></p> <p>查看索引user的student类型数据，得到刚刚插入的数据返回:</p> <h3 id="单条件搜索"><a href="#单条件搜索" aria-hidden="true" class="header-anchor">#</a> 单条件搜索</h3> <p>ES查询主要分为<code>term</code>精确搜索、<code>match</code>模糊搜索。</p> <h4 id="term精确搜索"><a href="#term精确搜索" aria-hidden="true" class="header-anchor">#</a> term精确搜索</h4> <p>我们用<code>term</code>搜索name为“kevin”的数据。</p> <div class="language-json extra-class"><pre class="language-json"><code>POST http<span class="token operator">:</span><span class="token comment">//localhost:9200/user/student/_search?pretty</span>
+<span class="token punctuation">{</span>
+	<span class="token property">&quot;query&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+		<span class="token property">&quot;term&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+			<span class="token property">&quot;name&quot;</span><span class="token operator">:</span><span class="token string">&quot;kevin&quot;</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>既然<code>term</code>是精确搜索，按照非关系型数据库的理解来讲就等同于<code>=</code>，那么搜索结果也应该只包含1条数据。然而出乎意料的是，搜索结果出现了两条数据：name=&quot;kevin&quot;和name=&quot;keivin yu&quot;，这看起来似乎是进行的模糊搜索，但又没有搜索出name=&quot;kevin2&quot;的数据。我们先继续观察<code>match</code>的搜索结果。</p> <h4 id="match模糊搜索"><a href="#match模糊搜索" aria-hidden="true" class="header-anchor">#</a> match模糊搜索</h4> <p>同样，搜索name为“kevin”的数据。</p> <div class="language-json extra-class"><pre class="language-json"><code>POST http<span class="token operator">:</span><span class="token comment">//localhost:9200/user/student/_search?pretty</span>
+<span class="token punctuation">{</span>
+    <span class="token property">&quot;query&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+        <span class="token property">&quot;match&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+            <span class="token property">&quot;name&quot;</span><span class="token operator">:</span><span class="token string">&quot;kevin&quot;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><code>match</code>的搜索结果竟然仍然是两条数据：name=&quot;kevin&quot;和name=&quot;keivin yu&quot;。同样，name=&quot;kevin2&quot;也没有出现在搜索结果中。</p> <p>原因在于<code>term</code>和<code>match</code>的精确和模糊针对的是<strong>搜索词</strong>而言，<strong><code>term</code>搜索不会将搜索词进行分词后再搜索，而<code>match</code>则会将搜索词进行分词后再搜索</strong>。例如，我们对name=&quot;kevin yu&quot;进行搜索，由于<code>term</code>搜索不会对搜索词进行搜索，所以它进行检索的是&quot;kevin yu&quot;这个整体，而<code>match</code>搜索则会对搜索词进行分词搜索，所以它进行检索的是包含&quot;kevin&quot;和&quot;yu&quot;的数据。而name字段是<code>text</code>类型，且它是按照<code>ik_smart</code>进行分词，就算是&quot;kevin yu&quot;这条数据由于被分词后变成了&quot;kevin&quot;和&quot;yu&quot;，所以<code>term</code>搜索不到任何结果。</p> <p>如果一定要用<code>term</code>搜索name=&quot;kevin yu&quot;，结果出现&quot;kevin yu&quot;，办法就是在定义映射Mapping时就为该字段设置一个<code>keyword</code>类型。</p> <p>为了下文的顺利进行，删除<code>DELETE http:localhost:9200/user/student</code>重新按照开头创建索引以及插入数据吧。唯一需要修改的是在定义映射Mapping时，name字段修改为如下所示：</p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;properties&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+		  <span class="token property">&quot;name&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+			  <span class="token property">&quot;type&quot;</span><span class="token operator">:</span><span class="token string">&quot;text&quot;</span><span class="token punctuation">,</span>
+			  <span class="token property">&quot;analyzer&quot;</span><span class="token operator">:</span><span class="token string">&quot;ik_smart&quot;</span><span class="token punctuation">,</span>
+			  <span class="token property">&quot;fields&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+				  <span class="token property">&quot;keyword&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+					  <span class="token property">&quot;type&quot;</span><span class="token operator">:</span><span class="token string">&quot;keyword&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;ignore_abore&quot;</span><span class="token operator">:</span><span class="token number">256</span>
+				  <span class="token punctuation">}</span>
+			  <span class="token punctuation">}</span>
+		  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;age&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+        <span class="token property">&quot;type&quot;</span><span class="token operator">:</span>integer
+    <span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>待我们重新创建好索引并插入数据后，此时再按照<code>term</code>搜索name=&quot;kevin yu&quot;。</p> <div class="language-json extra-class"><pre class="language-json"><code>POST http<span class="token operator">:</span><span class="token comment">//localhost:9200/user/student/_search</span>
+<span class="token punctuation">{</span>
+	<span class="token property">&quot;query&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+		<span class="token property">&quot;term&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+			<span class="token property">&quot;name.keyword&quot;</span><span class="token operator">:</span><span class="token string">&quot;kevin yu&quot;</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>返回一条name=&quot;kevin yu&quot;的数据。按照<code>match</code>搜索同样出现name=&quot;kevin yu&quot;，因为name.keyword无论如何都不会再分词。</p> <p><em>在已经建立索引且定义好映射Mapping的情况下，如果直接修改name字段，此时能修改成功，但是却无法进行查询，这与ES底层实现有关，如果一定要修改要么是新增字段，要么是重建索引。</em></p> <p>所以，与其说<code>match</code>是模糊搜索，倒不如说它是<strong>分词搜索</strong>，因为它会将搜索关键字分词；与其将<code>term</code>称之为模糊搜索，倒不如称之为<strong>不分词搜索</strong>，因为它不会将搜索关键字分词。</p> <p><code>match</code>查询还有很多更为高级的查询方式：<code>match_phrase</code>短语查询，<code>match_phrase_prefix</code>短语匹配查询，<code>multi_match</code>多字段查询等。将在复杂搜索一章中详细介绍。</p> <h4 id="类似like的模糊搜索"><a href="#类似like的模糊搜索" aria-hidden="true" class="header-anchor">#</a> 类似like的模糊搜索</h4> <p><code>wildcard</code>通配符查询。</p> <div class="language-json extra-class"><pre class="language-json"><code>POST http<span class="token operator">:</span><span class="token comment">//localhost:9200/user/student/_search?pretty</span>
+<span class="token punctuation">{</span>
+  <span class="token property">&quot;query&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;wildcard&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;*kevin*&quot;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>ES返回结果包括name=&quot;kevin&quot;，name=&quot;kevin2&quot;，name=&quot;kevin yu&quot;。</p> <h4 id="fuzzy更智能的模糊搜索"><a href="#fuzzy更智能的模糊搜索" aria-hidden="true" class="header-anchor">#</a> fuzzy更智能的模糊搜索</h4> <p>fuzzy也是一个模糊查询，它看起来更加”智能“。它类似于搜狗输入法中允许语法错误，但仍能搜出你想要的结果。例如，我们查询name等于”kevin“的文档时，不小心输成了”kevon“，它仍然能查询出结构。</p> <div class="language-json extra-class"><pre class="language-json"><code>POST http<span class="token operator">:</span><span class="token comment">//localhost:9200/user/student/_search?pretty</span>
+<span class="token punctuation">{</span>
+  <span class="token property">&quot;query&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;fuzzy&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;kevin&quot;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>ES返回结果包括name=&quot;kevin&quot;，name=&quot;kevin yu&quot;。</p> <h3 id="多条件搜索"><a href="#多条件搜索" aria-hidden="true" class="header-anchor">#</a> 多条件搜索</h3> <p>上文介绍了单个条件下的简单搜索，并且介绍了相关的精确和模糊搜索（分词与不分词）。这部分将介绍多个条件下的简单搜索。</p> <p>当搜索需要多个条件时，条件与条件之间的关系有”与“，”或“，“非”，正如非关系型数据库中的”and“，”or“，“not”。</p> <p>在ES中表示”与“关系的是关键字<code>must</code>，表示”或“关系的是关键字<code>should</code>，还有表示表示”非“的关键字<code>must_not</code>。</p> <p><code>must</code>、<code>should</code>、<code>must_not</code>在ES中称为<code>bool</code>查询。当有多个查询条件进行组合查询时，此时需要上述关键字配合上文提到的<code>term</code>，<code>match</code>等。</p> <ol><li>精确查询（<code>term</code>，搜索关键字不分词）name=&quot;kevin&quot;<strong>且</strong>age=&quot;25&quot;的学生。</li></ol> <div class="language-json extra-class"><pre class="language-json"><code>POST http<span class="token operator">:</span><span class="token comment">//localhost:9200/user/student/_search?pretty</span>
+<span class="token punctuation">{</span>
+	<span class="token property">&quot;query&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+		<span class="token property">&quot;bool&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+			<span class="token property">&quot;must&quot;</span><span class="token operator">:</span><span class="token punctuation">[</span><span class="token punctuation">{</span>
+				<span class="token property">&quot;term&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+					<span class="token property">&quot;name.keyword&quot;</span><span class="token operator">:</span><span class="token string">&quot;kevin&quot;</span>
+				<span class="token punctuation">}</span>
+			<span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">{</span>
+				<span class="token property">&quot;term&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+					<span class="token property">&quot;age&quot;</span><span class="token operator">:</span><span class="token number">25</span>
+				<span class="token punctuation">}</span>
+			<span class="token punctuation">}</span><span class="token punctuation">]</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>返回name=&quot;kevin&quot;且age=&quot;25&quot;的数据。</p> <ol start="2"><li>精确查询（<code>term</code>，搜索关键字不分词）name=&quot;kevin&quot;<strong>或</strong>age=&quot;21&quot;的学生。</li></ol> <div class="language-json extra-class"><pre class="language-json"><code>POST http<span class="token operator">:</span><span class="token comment">//localhost:9200/user/student/_search?pretty</span>
+<span class="token punctuation">{</span>
+	<span class="token property">&quot;query&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+		<span class="token property">&quot;bool&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+			<span class="token property">&quot;should&quot;</span><span class="token operator">:</span><span class="token punctuation">[</span><span class="token punctuation">{</span>
+				<span class="token property">&quot;term&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+					<span class="token property">&quot;name.keyword&quot;</span><span class="token operator">:</span><span class="token string">&quot;kevin&quot;</span>
+				<span class="token punctuation">}</span>
+			<span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">{</span>
+				<span class="token property">&quot;term&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+					<span class="token property">&quot;age&quot;</span><span class="token operator">:</span><span class="token number">21</span>
+				<span class="token punctuation">}</span>
+			<span class="token punctuation">}</span><span class="token punctuation">]</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>返回name=&quot;kevin&quot;，age=25和name=&quot;kevin yu&quot;，age=21的数据</p> <ol start="3"><li>精确查询（<code>term</code>，搜索关键字不分词）name!=&quot;kevin&quot;<strong>且</strong>age=&quot;25&quot;的学生。</li></ol> <div class="language-json extra-class"><pre class="language-json"><code>POST http<span class="token operator">:</span><span class="token comment">//localhost:9200/user/student/_search?pretty</span>
+<span class="token punctuation">{</span>
+	<span class="token property">&quot;query&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+		<span class="token property">&quot;bool&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+			<span class="token property">&quot;must&quot;</span><span class="token operator">:</span><span class="token punctuation">[</span><span class="token punctuation">{</span>
+				<span class="token property">&quot;term&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+					<span class="token property">&quot;age&quot;</span><span class="token operator">:</span><span class="token number">25</span>
+				<span class="token punctuation">}</span>
+			<span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+			<span class="token property">&quot;must_not&quot;</span><span class="token operator">:</span><span class="token punctuation">[</span><span class="token punctuation">{</span>
+				<span class="token property">&quot;term&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+					<span class="token property">&quot;name.keyword&quot;</span><span class="token operator">:</span><span class="token string">&quot;kevin&quot;</span>
+				<span class="token punctuation">}</span>
+			<span class="token punctuation">}</span><span class="token punctuation">]</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>返回name=&quot;kevin2&quot;的数据。</p> <p>如果查询条件中同时包含<code>must</code>、<code>should</code>、<code>must_not</code>，那么它们三者是&quot;且&quot;的关系</p> <p>多条件查询中查询逻辑(<code>must</code>、<code>should</code>、<code>must_not</code>)与查询精度(<code>term</code>、<code>match</code>)配合能组合成非常丰富的查询条件。</p> <h2 id="按等值、范围查询维度"><a href="#按等值、范围查询维度" aria-hidden="true" class="header-anchor">#</a> 按等值、范围查询维度</h2> <p>上文中讲到了精确查询、模糊查询，已经&quot;且&quot;，&quot;或&quot;，&quot;非&quot;的查询。基本上都是在做<strong>等值查询</strong>，实际查询中还包括，范围（大于小于）查询（<code>range</code>）、存在查询（<code>exists</code>）、~<s>不存在查询（<code>missing</code>）</s>。</p> <h3 id="范围查询"><a href="#范围查询" aria-hidden="true" class="header-anchor">#</a> 范围查询</h3> <p>范围查询关键字<code>range</code>，它包括大于<code>gt</code>、大于等于<code>gte</code>、小于<code>lt</code>、小于等于<code>lte</code>。</p> <ol><li>查询age&gt;25的学生。</li></ol> <div class="language-json extra-class"><pre class="language-json"><code>POST http<span class="token operator">:</span><span class="token comment">//localhost:9200/user/student/_search?pretty</span>
+<span class="token punctuation">{</span>
+	<span class="token property">&quot;query&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+		<span class="token property">&quot;range&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+			<span class="token property">&quot;age&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+				<span class="token property">&quot;gt&quot;</span><span class="token operator">:</span><span class="token number">25</span>
+			<span class="token punctuation">}</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>返回name=&quot;kangkang&quot;的数据。</p> <ol start="2"><li>查询age &gt;= 21且age &lt; 26的学生。</li></ol> <div class="language-json extra-class"><pre class="language-json"><code>POST http<span class="token operator">:</span><span class="token comment">//localhost:9200/user/search/_search?pretty</span>
+<span class="token punctuation">{</span>
+	<span class="token property">&quot;query&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+		<span class="token property">&quot;range&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+			<span class="token property">&quot;age&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+				<span class="token property">&quot;gte&quot;</span><span class="token operator">:</span><span class="token number">21</span><span class="token punctuation">,</span>
+				<span class="token property">&quot;lt&quot;</span><span class="token operator">:</span><span class="token number">25</span>
+			<span class="token punctuation">}</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><em>查询age &gt;= 21 且 age &lt; 26且name=&quot;kevin&quot;的学生</em></p> <div class="language-json extra-class"><pre class="language-json"><code>POST http<span class="token operator">:</span><span class="token comment">//localhost:9200/user/search/_search?pretty</span>
+<span class="token punctuation">{</span>
+	<span class="token property">&quot;query&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+		<span class="token property">&quot;bool&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+			<span class="token property">&quot;must&quot;</span><span class="token operator">:</span><span class="token punctuation">[</span><span class="token punctuation">{</span>
+				<span class="token property">&quot;term&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+					<span class="token property">&quot;name&quot;</span><span class="token operator">:</span><span class="token string">&quot;kevin&quot;</span>
+				<span class="token punctuation">}</span>
+			<span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">{</span>
+				<span class="token property">&quot;range&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+					<span class="token property">&quot;age&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+						<span class="token property">&quot;gte&quot;</span><span class="token operator">:</span><span class="token number">21</span><span class="token punctuation">,</span>
+						<span class="token property">&quot;lt&quot;</span><span class="token operator">:</span><span class="token number">25</span>
+					<span class="token punctuation">}</span>
+				<span class="token punctuation">}</span>
+			<span class="token punctuation">}</span><span class="token punctuation">]</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="存在查询"><a href="#存在查询" aria-hidden="true" class="header-anchor">#</a> 存在查询</h3> <p>存在查询意为查询是否存在某个字段。</p> <p>查询存在name字段的数据。</p> <div class="language-json extra-class"><pre class="language-json"><code>POST http<span class="token operator">:</span><span class="token comment">//localhost:9200/user/student/_search?pretty</span>
+<span class="token punctuation">{</span>
+	<span class="token property">&quot;query&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+		<span class="token property">&quot;exists&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+			<span class="token property">&quot;field&quot;</span><span class="token operator">:</span><span class="token string">&quot;name&quot;</span>
+		<span class="token punctuation">}</span>	
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="不存在查询"><a href="#不存在查询" aria-hidden="true" class="header-anchor">#</a> 不存在查询</h3> <p>不存在查询顾名思义查询不存在某个字段的数据。在以前ES有<code>missing</code>表示查询不存在的字段，后来的版本中由于<code>must not</code>和<code>exists</code>可以组合成<code>missing</code>，故去掉了<code>missing</code>。</p> <p>查询不存在name字段的数据。</p> <div class="language-json extra-class"><pre class="language-json"><code>POST http<span class="token operator">:</span><span class="token comment">//localhost:9200/user/student/_search?pretty</span>
+<span class="token punctuation">{</span>
+	<span class="token property">&quot;query&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+		<span class="token property">&quot;bool&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+			<span class="token property">&quot;must_not&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+				<span class="token property">&quot;exists&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+					<span class="token property">&quot;field&quot;</span><span class="token operator">:</span><span class="token string">&quot;name&quot;</span>
+				<span class="token punctuation">}</span>
+			<span class="token punctuation">}</span>
+		<span class="token punctuation">}</span>	
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="分页搜索"><a href="#分页搜索" aria-hidden="true" class="header-anchor">#</a> 分页搜索</h2> <p>谈到ES的分页永远都绕不开<strong>深分页</strong>的问题。但在本章中暂时避开这个问题，只说明在ES中如何进行分页查询。</p> <p>ES分页查询包含<code>from</code>和<code>size</code>关键字，<code>from</code>表示起始值，<code>size</code>表示一次查询的数量。</p> <ol><li>查询数据的总数</li></ol> <div class="language-json extra-class"><pre class="language-json"><code>POST http<span class="token operator">:</span><span class="token comment">//localhost:9200/user/student/_search?pretty</span>
+</code></pre></div><p>返回文档总数。</p> <ol start="2"><li>分页（一页包含1条数据）模糊查询(<code>match</code>，搜索关键字不分词)name=&quot;kevin&quot;</li></ol> <div class="language-json extra-class"><pre class="language-json"><code>POST http<span class="token operator">:</span><span class="token comment">//localhost:9200/user/student/_search?pretty</span>
+<span class="token punctuation">{</span>
+	<span class="token property">&quot;query&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+		<span class="token property">&quot;match&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+			<span class="token property">&quot;name&quot;</span><span class="token operator">:</span><span class="token string">&quot;kevin&quot;</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token property">&quot;from&quot;</span><span class="token operator">:</span><span class="token number">0</span><span class="token punctuation">,</span>
+	<span class="token property">&quot;size&quot;</span><span class="token operator">:</span><span class="token number">1</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>结合文档总数即可返回简单的分页查询。</p> <p>分页查询中往往我们也需要对数据进行排序返回，MySQL中使用<code>order by</code>关键字，ES中使用<code>sort</code>关键字指定排序字段以及降序升序。</p> <ol><li>分页（一页包含1条数据）查询age &gt;= 21且age &lt;=26的学生，按年龄降序排列。</li></ol> <div class="language-json extra-class"><pre class="language-json"><code>POST http<span class="token operator">:</span><span class="token comment">//localhost:9200/user/student/_search?pretty</span>
+<span class="token punctuation">{</span>
+	<span class="token property">&quot;query&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+		<span class="token property">&quot;range&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+			<span class="token property">&quot;age&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+				<span class="token property">&quot;gte&quot;</span><span class="token operator">:</span><span class="token number">21</span><span class="token punctuation">,</span>
+				<span class="token property">&quot;lte&quot;</span><span class="token operator">:</span><span class="token number">26</span>
+			<span class="token punctuation">}</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token property">&quot;from&quot;</span><span class="token operator">:</span><span class="token number">0</span><span class="token punctuation">,</span>
+	<span class="token property">&quot;size&quot;</span><span class="token operator">:</span><span class="token number">1</span><span class="token punctuation">,</span>
+	<span class="token property">&quot;sort&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+		<span class="token property">&quot;age&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+			<span class="token property">&quot;order&quot;</span><span class="token operator">:</span><span class="token string">&quot;desc&quot;</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>ES默认升序排列，如果不指定排序字段的排序），则<code>sort</code>字段可直接写为<code>&quot;sort&quot;:&quot;age&quot;</code>。</p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/es6/chapter4.html" class="prev">分词</a></span> <span class="next"><a href="/es6/chapter6.html">Java客户端（上）</a>→
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.ada1b567.js" defer></script><script src="/assets/js/2.abace2d1.js" defer></script><script src="/assets/js/12.9da86373.js" defer></script>
+  </body>
+</html>

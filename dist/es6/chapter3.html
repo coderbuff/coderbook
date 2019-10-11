@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>简单的API | CoderBook</title>
+    <meta name="description" content="CoderBook">
+    
+    
+    <link rel="preload" href="/assets/css/0.styles.4c5f93b7.css" as="style"><link rel="preload" href="/assets/js/app.ada1b567.js" as="script"><link rel="preload" href="/assets/js/2.abace2d1.js" as="script"><link rel="preload" href="/assets/js/10.048b2296.js" as="script"><link rel="prefetch" href="/assets/js/11.6f32ae89.js"><link rel="prefetch" href="/assets/js/12.9da86373.js"><link rel="prefetch" href="/assets/js/13.090f1492.js"><link rel="prefetch" href="/assets/js/14.46744065.js"><link rel="prefetch" href="/assets/js/15.de197aa8.js"><link rel="prefetch" href="/assets/js/16.60357a4b.js"><link rel="prefetch" href="/assets/js/17.e4e8d195.js"><link rel="prefetch" href="/assets/js/18.4f18d69c.js"><link rel="prefetch" href="/assets/js/3.8157aed2.js"><link rel="prefetch" href="/assets/js/4.538aa75a.js"><link rel="prefetch" href="/assets/js/5.77a3aff8.js"><link rel="prefetch" href="/assets/js/6.290384a9.js"><link rel="prefetch" href="/assets/js/7.93efe7bf.js"><link rel="prefetch" href="/assets/js/8.4865de69.js"><link rel="prefetch" href="/assets/js/9.05ef765c.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.4c5f93b7.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">CoderBook</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">首页</a></div><div class="nav-item"><a href="/es6/index.html" class="nav-link">ElasticSearch6.x</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">首页</a></div><div class="nav-item"><a href="/es6/index.html" class="nav-link">ElasticSearch6.x</a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/es6/" class="sidebar-link">写在前面的话</a></li><li><a href="/es6/chapter1.html" class="sidebar-link">准备工作</a></li><li><a href="/es6/chapter2.html" class="sidebar-link">基本术语</a></li><li><a href="/es6/chapter3.html" class="active sidebar-link">简单的API</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/es6/chapter3.html#索引index" class="sidebar-link">索引Index</a></li><li class="sidebar-sub-header"><a href="/es6/chapter3.html#类型type（同时定义映射mapping字段及类型）" class="sidebar-link">类型Type（同时定义映射Mapping字段及类型）</a></li><li class="sidebar-sub-header"><a href="/es6/chapter3.html#文档document" class="sidebar-link">文档Document</a></li></ul></li><li><a href="/es6/chapter4.html" class="sidebar-link">分词</a></li><li><a href="/es6/chapter5.html" class="sidebar-link">简单搜索</a></li><li><a href="/es6/chapter6.html" class="sidebar-link">Java客户端（上）</a></li><li><a href="/es6/chapter7.html" class="sidebar-link">父-子关系文档</a></li><li><a href="/es6/chapter8.html" class="sidebar-link">复杂搜索</a></li><li><a href="/es6/chapter9.html" class="sidebar-link">Java客户端（下）</a></li><li><a href="/es6/chapter10.html" class="sidebar-link">实战：ELK日志分析系统</a></li><li><a href="/es6/chapter11.html" class="sidebar-link">实战：多数据源同步</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="简单的api"><a href="#简单的api" aria-hidden="true" class="header-anchor">#</a> 简单的API</h1> <blockquote><p>万丈高楼平地起</p></blockquote> <p>ES提供了多种操作数据的方式，其中较为常见的方式就是RESTful风格的API。</p> <p>简单的体验</p> <p>利用Postman发起HTTP请求（当然也可以在命令行中使用curl命令）。</p> <h2 id="索引index"><a href="#索引index" aria-hidden="true" class="header-anchor">#</a> 索引Index</h2> <h3 id="创建索引"><a href="#创建索引" aria-hidden="true" class="header-anchor">#</a> 创建索引</h3> <p>创建一个名叫<code>demo</code>的索引：</p> <p><code>PUT http://localhost:9200/demo</code></p> <p>ES响应：</p> <div class="language-jso extra-class"><pre class="language-text"><code>{
+    &quot;acknowledged&quot;: true,
+    &quot;shards_acknowledged&quot;: true,
+    &quot;index&quot;: &quot;demo&quot;
+}
+</code></pre></div><p>在创建索引时，可指定主分片和分片副本的数量：</p> <p><code>PUT http://localhost:9200/demo</code></p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;settings&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+        <span class="token property">&quot;number_of_shards&quot;</span><span class="token operator">:</span><span class="token number">1</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;number_of_replicas&quot;</span><span class="token operator">:</span><span class="token number">1</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>ES响应：</p> <div class="language-jso extra-class"><pre class="language-text"><code>{
+    &quot;acknowledged&quot;: true,
+    &quot;shards_acknowledged&quot;: true,
+    &quot;index&quot;: &quot;demo&quot;
+}
+</code></pre></div><h3 id="查看指定索引"><a href="#查看指定索引" aria-hidden="true" class="header-anchor">#</a> 查看指定索引</h3> <p><code>GET http://localhost:9200/demo</code></p> <p>ES响应：</p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;demo&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;aliases&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;mappings&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;settings&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token property">&quot;index&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                <span class="token property">&quot;creation_date&quot;</span><span class="token operator">:</span> <span class="token string">&quot;1561110747038&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;number_of_shards&quot;</span><span class="token operator">:</span> <span class="token string">&quot;1&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;number_of_replicas&quot;</span><span class="token operator">:</span> <span class="token string">&quot;1&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;uuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;kjPqDUt6TMyywg1P7qgccw&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;version&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                    <span class="token property">&quot;created&quot;</span><span class="token operator">:</span> <span class="token string">&quot;5060499&quot;</span>
+                <span class="token punctuation">}</span><span class="token punctuation">,</span> 
+                <span class="token property">&quot;provided_name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;demo&quot;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="查询es中的索引"><a href="#查询es中的索引" aria-hidden="true" class="header-anchor">#</a> 查询ES中的索引</h3> <p>查询ES中索引情况：</p> <p><code>GET http://localhost:9200/_cat/indices?v</code></p> <p>ES响应：</p> <table><thead><tr><th style="text-align:left;">health</th> <th style="text-align:left;">status</th> <th style="text-align:left;">index</th> <th style="text-align:left;">uuid</th> <th style="text-align:left;">pri</th> <th style="text-align:left;">rep</th> <th style="text-align:left;">docs.count</th> <th style="text-align:left;">docs.deleted</th> <th style="text-align:left;">store.size</th> <th style="text-align:left;">pri.store.size</th></tr></thead> <tbody><tr><td style="text-align:left;">yellow</td> <td style="text-align:left;">open</td> <td style="text-align:left;">demo</td> <td style="text-align:left;">wqkto5CCTpWNdP3HGpLfxA</td> <td style="text-align:left;">5</td> <td style="text-align:left;">1</td> <td style="text-align:left;">0</td> <td style="text-align:left;">0</td> <td style="text-align:left;">810b</td> <td style="text-align:left;">810b</td></tr> <tr><td style="text-align:left;">yellow</td> <td style="text-align:left;">open</td> <td style="text-align:left;">.kibana</td> <td style="text-align:left;">pwKW9hJyRkO7_pE0MNE05g</td> <td style="text-align:left;">1</td> <td style="text-align:left;">1</td> <td style="text-align:left;">1</td> <td style="text-align:left;">0</td> <td style="text-align:left;">3.2kb</td> <td style="text-align:left;">3.2kb</td></tr></tbody></table> <p>可以看到当前ES中一共有2个索引，一个是我们刚创建的<code>demo</code>，另一个是kibana创建的索引<code>.kibana</code>。表格中有一些信息代表了索引的一些状态。</p> <p>health：健康状态，red表示不是所有的主分片都可用，即<strong>部分主分片可用</strong>。yellow表示主分片可用备分片不可用，常常是单机ES的健康状态，greens表示所有的主分片和备分片都可用。（官方对集群健康状态的说明，<a href="https://www.elastic.co/guide/en/elasticsearch/guide/master/cluster-health.html" target="_blank" rel="noopener noreferrer">https://www.elastic.co/guide/en/elasticsearch/guide/master/cluster-health.html<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>）</p> <p>status：索引状态，open表示打开可对索引中的文档数据进行读写，close表示关闭此时索引占用的内存会被释放，但是此时索引不可进行读写操作。</p> <p>index：索引</p> <p>uuid：索引标识</p> <p>pri：索引的主分片数量</p> <p>rep：索引的分片副本数量，1表示有一个分片副本（有多少主分片就有多少备分片，此处表示5个备分片）。</p> <p>docs.count：文档数量</p> <p>docs.deleted：被删除的文档数量</p> <p>store.size：索引大小</p> <p>pri.store.size：主分片占用的大小</p> <h3 id="删除索引"><a href="#删除索引" aria-hidden="true" class="header-anchor">#</a> 删除索引</h3> <p>删除<code>demo</code>索引，<strong>删除索引等同于删库跑路，请谨慎操作。</strong></p> <p><code>DELETE http://localhost:9200/demo</code></p> <p>ES响应：</p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;acknowledged&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="类型type（同时定义映射mapping字段及类型）"><a href="#类型type（同时定义映射mapping字段及类型）" aria-hidden="true" class="header-anchor">#</a> 类型Type（同时定义映射Mapping字段及类型）</h2> <h3 id="创建类型"><a href="#创建类型" aria-hidden="true" class="header-anchor">#</a> 创建类型</h3> <p>在前面<strong>基本术语</strong>中我们提到类型Type类似关系型数据库中的表，映射Mapping定义表结构。创建类型Type时需要配合映射Mapping。</p> <p>创建索引<code>demo</code>的类型为<code>example_type</code>,包含两个字段：<code>created</code>类型为date，<code>message</code>类型为keyword：</p> <p><strong>方式一：</strong></p> <div class="language-json extra-class"><pre class="language-json"><code>PUT http<span class="token operator">:</span><span class="token comment">//localhost:9200/demo/_mapping/example_type</span>
+
+<span class="token punctuation">{</span>
+    <span class="token property">&quot;properties&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+        <span class="token property">&quot;created&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+            <span class="token property">&quot;type&quot;</span><span class="token operator">:</span><span class="token string">&quot;date&quot;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;message&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+            <span class="token property">&quot;type&quot;</span><span class="token operator">:</span><span class="token string">&quot;keyword&quot;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>此时再次执行查询索引的操作，已经可以发现类型Type被创建了，遗憾的是，如果类型Type（或者映射Mapping）一旦定义，就不能删除，只能修改，为了保证本教程顺利进行方式二创建类型，所以此处执行<code>DELETE http://localhost:9200/demo</code>删除索引。删除索引后不要再创建索引，下面的这种方式是在创建索引的同时创建Type并定义Mapping</p> <p><strong>方式二：</strong></p> <div class="language-json extra-class"><pre class="language-json"><code>PUT http<span class="token operator">:</span><span class="token comment">//localhost:9200/demo</span>
+<span class="token punctuation">{</span>
+    <span class="token property">&quot;mappings&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+        <span class="token property">&quot;example_type&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+            <span class="token property">&quot;properties&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+                <span class="token property">&quot;created&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+                    <span class="token property">&quot;type&quot;</span><span class="token operator">:</span><span class="token string">&quot;date&quot;</span>
+                <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;message&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+                    <span class="token property">&quot;type&quot;</span><span class="token operator">:</span><span class="token string">&quot;keyword&quot;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>此时执行<code>GET http://localhost:9200/demo</code>，可以看到我们在ES中创建了第一个索引以及创建的表结构，接下来插入就是数据（即文档）。</p> <h2 id="文档document"><a href="#文档document" aria-hidden="true" class="header-anchor">#</a> 文档Document</h2> <h3 id="插入文档"><a href="#插入文档" aria-hidden="true" class="header-anchor">#</a> 插入文档</h3> <p>系统定义<code>_id</code></p> <div class="language-json extra-class"><pre class="language-json"><code>POST http<span class="token operator">:</span><span class="token comment">//localhost:9200/demo/example_type</span>
+<span class="token punctuation">{</span>
+    <span class="token property">&quot;created&quot;</span><span class="token operator">:</span><span class="token number">1561135459000</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;message&quot;</span><span class="token operator">:</span><span class="token string">&quot;test1&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>ES响应：</p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;_index&quot;</span><span class="token operator">:</span> <span class="token string">&quot;demo&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;_type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;example_type&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;_id&quot;</span><span class="token operator">:</span> <span class="token string">&quot;AWt67Ql_Tf0FgxupYlBX&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;_version&quot;</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;result&quot;</span><span class="token operator">:</span> <span class="token string">&quot;created&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;_shards&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;total&quot;</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;successful&quot;</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;failed&quot;</span><span class="token operator">:</span> <span class="token number">0</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;created&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="查询文档"><a href="#查询文档" aria-hidden="true" class="header-anchor">#</a> 查询文档</h3> <p>ElasticSearch的核心功能——搜索。</p> <p><code>POST http://localhost:9200/demo/example_type/_search?pretty</code></p> <p>ES响应：</p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;took&quot;</span><span class="token operator">:</span> <span class="token number">183</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;timed_out&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;_shards&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;total&quot;</span><span class="token operator">:</span> <span class="token number">5</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;successful&quot;</span><span class="token operator">:</span> <span class="token number">5</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;skipped&quot;</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;failed&quot;</span><span class="token operator">:</span> <span class="token number">0</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;hits&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;total&quot;</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;max_score&quot;</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;hits&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;_index&quot;</span><span class="token operator">:</span> <span class="token string">&quot;demo&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;_type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;example_type&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;_id&quot;</span><span class="token operator">:</span> <span class="token string">&quot;AWt67Ql_Tf0FgxupYlBX&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;_score&quot;</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;_source&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                    <span class="token property">&quot;created&quot;</span><span class="token operator">:</span> <span class="token number">1561135459000</span><span class="token punctuation">,</span>
+                    <span class="token property">&quot;message&quot;</span><span class="token operator">:</span> <span class="token string">&quot;test1&quot;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>关于文档的查询是ElasticSearch的核心，后面的章节会详细介绍一些基本的简单查询和更为高级的复杂查询，此处仅作为对插入数据的验证，不做过多展开。</p> <h3 id="修改文档"><a href="#修改文档" aria-hidden="true" class="header-anchor">#</a> 修改文档</h3> <p>根据文档<code>_id</code>修改</p> <div class="language-json extra-class"><pre class="language-json"><code>POST http<span class="token operator">:</span><span class="token comment">//localhost:9200/demo/example_type/AWt67Ql_Tf0FgxupYlBX/_update</span>
+<span class="token punctuation">{</span>
+    <span class="token property">&quot;doc&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+        <span class="token property">&quot;message&quot;</span><span class="token operator">:</span><span class="token string">&quot;updated&quot;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>ES响应：</p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;_index&quot;</span><span class="token operator">:</span> <span class="token string">&quot;demo&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;_type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;example_type&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;_id&quot;</span><span class="token operator">:</span> <span class="token string">&quot;AWt67Ql_Tf0FgxupYlBX&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;_version&quot;</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;result&quot;</span><span class="token operator">:</span> <span class="token string">&quot;updated&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;_shards&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;total&quot;</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;successful&quot;</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;failed&quot;</span><span class="token operator">:</span> <span class="token number">0</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="删除文档"><a href="#删除文档" aria-hidden="true" class="header-anchor">#</a> 删除文档</h3> <p>删除<code>_id</code>为AWt67Ql_Tf0FgxupYlBX的文档</p> <p><code>DELETE http://localhost:9200/demo/example_type/AWt67Ql_Tf0FgxupYlBX</code></p> <p>ES的响应：</p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;found&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;_index&quot;</span><span class="token operator">:</span> <span class="token string">&quot;demo&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;_type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;example_type&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;_id&quot;</span><span class="token operator">:</span> <span class="token string">&quot;AWt67Ql_Tf0FgxupYlBX&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;_version&quot;</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;result&quot;</span><span class="token operator">:</span> <span class="token string">&quot;deleted&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;_shards&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;total&quot;</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;successful&quot;</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;failed&quot;</span><span class="token operator">:</span> <span class="token number">0</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/es6/chapter2.html" class="prev">基本术语</a></span> <span class="next"><a href="/es6/chapter4.html">分词</a>→
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.ada1b567.js" defer></script><script src="/assets/js/2.abace2d1.js" defer></script><script src="/assets/js/10.048b2296.js" defer></script>
+  </body>
+</html>
