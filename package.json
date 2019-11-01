@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs"
+    "docs:dev": "node ./builds/addComponents.js && vuepress dev docs && node ./builds/delComponents.js",
+    "docs:build": "node ./builds/addComponents.js && vuepress build docs && node ./builds/delComponents.js"
   },
   "keywords": [],
   "author": "",
