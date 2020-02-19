@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>事务 | CoderBook</title>
+    <meta name="description" content="CoderBook">
+    <meta name="generator" content="VuePress 1.3.0">
+    
+    
+    <link rel="preload" href="/coderbook/assets/css/0.styles.b2da8d00.css" as="style"><link rel="preload" href="/coderbook/assets/js/app.bd0e8773.js" as="script"><link rel="preload" href="/coderbook/assets/js/2.2e9b2f22.js" as="script"><link rel="preload" href="/coderbook/assets/js/25.6a2ddf93.js" as="script"><link rel="prefetch" href="/coderbook/assets/js/10.6f377ed6.js"><link rel="prefetch" href="/coderbook/assets/js/11.f34c1c50.js"><link rel="prefetch" href="/coderbook/assets/js/12.d8b974da.js"><link rel="prefetch" href="/coderbook/assets/js/13.4f10c2cc.js"><link rel="prefetch" href="/coderbook/assets/js/14.07641015.js"><link rel="prefetch" href="/coderbook/assets/js/15.11341f4e.js"><link rel="prefetch" href="/coderbook/assets/js/16.a1027f62.js"><link rel="prefetch" href="/coderbook/assets/js/17.b0b7317a.js"><link rel="prefetch" href="/coderbook/assets/js/18.42995780.js"><link rel="prefetch" href="/coderbook/assets/js/19.e405f35e.js"><link rel="prefetch" href="/coderbook/assets/js/20.f13e781b.js"><link rel="prefetch" href="/coderbook/assets/js/21.ecee6efb.js"><link rel="prefetch" href="/coderbook/assets/js/22.a5802306.js"><link rel="prefetch" href="/coderbook/assets/js/23.d28e9e5c.js"><link rel="prefetch" href="/coderbook/assets/js/24.0abc3809.js"><link rel="prefetch" href="/coderbook/assets/js/26.4c465923.js"><link rel="prefetch" href="/coderbook/assets/js/27.7b30b08b.js"><link rel="prefetch" href="/coderbook/assets/js/28.24baedb4.js"><link rel="prefetch" href="/coderbook/assets/js/29.f282ec3c.js"><link rel="prefetch" href="/coderbook/assets/js/3.d038ebcd.js"><link rel="prefetch" href="/coderbook/assets/js/30.f7e309d4.js"><link rel="prefetch" href="/coderbook/assets/js/4.9132518f.js"><link rel="prefetch" href="/coderbook/assets/js/5.8cde2cb8.js"><link rel="prefetch" href="/coderbook/assets/js/6.cf9f53d9.js"><link rel="prefetch" href="/coderbook/assets/js/7.a256c028.js"><link rel="prefetch" href="/coderbook/assets/js/8.2227699c.js"><link rel="prefetch" href="/coderbook/assets/js/9.fbfe90ec.js">
+    <link rel="stylesheet" href="/coderbook/assets/css/0.styles.b2da8d00.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/coderbook/" class="home-link router-link-active"><!----> <span class="site-name">CoderBook</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/coderbook/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="/coderbook/es6/index.html" class="nav-link">
+  ElasticSearch6.x
+</a></div><div class="nav-item"><a href="/coderbook/redis5/index.html" class="nav-link">
+  Redis5.x
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/coderbook/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="/coderbook/es6/index.html" class="nav-link">
+  ElasticSearch6.x
+</a></div><div class="nav-item"><a href="/coderbook/redis5/index.html" class="nav-link">
+  Redis5.x
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/coderbook/redis5/" class="sidebar-link">写在前面的话</a></li><li><a href="/coderbook/redis5/chapter1.html" class="sidebar-link">准备工作</a></li><li><a href="/coderbook/redis5/chapter2.html" class="sidebar-link">数据类型</a></li><li><a href="/coderbook/redis5/chapter3.html" class="sidebar-link">命令</a></li><li><a href="/coderbook/redis5/chapter4.html" class="sidebar-link">配置</a></li><li><a href="/coderbook/redis5/chapter5.html" class="sidebar-link">Java客户端（上）</a></li><li><a href="/coderbook/redis5/chapter6.html" class="active sidebar-link">事务</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/coderbook/redis5/chapter6.html#redis中的-假事务-（不保证原子性）" class="sidebar-link">Redis中的“假事务”（不保证原子性）</a></li><li class="sidebar-sub-header"><a href="/coderbook/redis5/chapter6.html#通过lua脚本保证redis的真事务" class="sidebar-link">通过Lua脚本保证Redis的真事务</a></li><li class="sidebar-sub-header"><a href="/coderbook/redis5/chapter6.html#jedis中如何载入lua脚本" class="sidebar-link">Jedis中如何载入Lua脚本</a></li></ul></li><li><a href="/coderbook/redis5/chapter7.html" class="sidebar-link">分布式锁</a></li><li><a href="/coderbook/redis5/chapter8.html" class="sidebar-link">Java客户端（下）</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="事务"><a href="#事务" class="header-anchor">#</a> 事务</h1> <p>我们在学习MySQL的存储殷勤时知道，MySQL中innodb支持事务而myisam不支持事务。而事务具有四个特性：</p> <ul><li>一致性</li> <li>原子性</li> <li>隔离性</li> <li>持久性</li></ul> <p>在redis尽管提供了事务相关的命令，但实际上它是一个“假事务”，因为它并不支持回滚，也就是说在redis中一个事务有多个命令执行，并不能保证原子性。所以要使用redis的事务，一定要<strong>慎重</strong>。</p> <h2 id="redis中的-假事务-（不保证原子性）"><a href="#redis中的-假事务-（不保证原子性）" class="header-anchor">#</a> Redis中的“假事务”（不保证原子性）</h2> <p>在redis中事务相关的命令一共有以下几个：</p> <p><code>watch [key1] [key2]</code>：监视一个或多个key，在事务开始之前如果被监视的key有改动，则事务被打断。</p> <p><code>multi</code>：标记一个事务的开始。</p> <p><code>exec</code>：执行事务。</p> <p><code>discard</code>：取消事务的执行。</p> <p><code>unwatch</code>：取消监视的key。</p> <ul><li>正常执行事务</li></ul> <div class="language- extra-class"><pre class="language-text"><code>127.0.0.1:6379&gt; multi
+OK
+127.0.0.1:6379&gt; set name kevin
+QUEUED
+127.0.0.1:6379&gt; set age 25
+QUEUED
+127.0.0.1:6379&gt; get name
+QUEUED
+127.0.0.1:6379&gt; set sex male
+QUEUED
+127.0.0.1:6379&gt; exec
+1) OK
+2) OK
+3) &quot;kevin&quot;
+4) OK
+</code></pre></div><ul><li>取消事务执行</li></ul> <p>取消事务执行，命令将不会被执行。</p> <div class="language- extra-class"><pre class="language-text"><code>127.0.0.1:6379&gt; multi
+OK
+127.0.0.1:6379&gt; set name yulinfeng
+QUEUED
+127.0.0.1:6379&gt; set age 26
+QUEUED
+127.0.0.1:6379&gt; discard
+OK
+127.0.0.1:6379&gt; get name
+&quot;kevin&quot;
+</code></pre></div><ul><li>事务中的命令出现<strong>命令性错误</strong>，类似Java的编译错误，执行事务时，所有的命令都不会被执行。</li></ul> <div class="language- extra-class"><pre class="language-text"><code>127.0.0.1:6379&gt; multi
+OK
+127.0.0.1:6379&gt; set name yulinfeng
+QUEUED
+127.0.0.1:6379&gt; setget age 26
+(error) ERR unknown command `setget`, with args beginning with: `age`, `26`, 
+127.0.0.1:6379&gt; exec
+(error) EXECABORT Transaction discarded because of previous errors.
+127.0.0.1:6379&gt; get name
+&quot;kevin&quot;
+</code></pre></div><ul><li>事务中出现<strong>执行时错误</strong>，类似Java的运行时异常，执行事务时，部分命令会被执行成功，也即是<strong>不保证原子性</strong>。</li></ul> <div class="language- extra-class"><pre class="language-text"><code>127.0.0.1:6379&gt; multi
+OK
+127.0.0.1:6379&gt; incr name
+QUEUED
+127.0.0.1:6379&gt; set age 26
+QUEUED
+127.0.0.1:6379&gt; exec
+1) (error) ERR value is not an integer or out of range
+2) OK
+127.0.0.1:6379&gt; get age
+&quot;26&quot;
+</code></pre></div><ul><li>使用<code>watch</code>监视key在事务之前被改动，正常未被改动时的情况，所有命令正常执行。</li></ul> <div class="language- extra-class"><pre class="language-text"><code>127.0.0.1:6379&gt; watch name
+OK
+127.0.0.1:6379&gt; multi
+OK
+127.0.0.1:6379&gt; set name yulinfeng
+QUEUED
+127.0.0.1:6379&gt; set age 18
+QUEUED
+127.0.0.1:6379&gt; exec
+1) OK
+2) OK
+127.0.0.1:6379&gt; get age
+&quot;18&quot;
+</code></pre></div><ul><li>使用<code>watch</code>监视key，此时在事务执行前key被改动，事务将取消不会执行所有命令。</li></ul> <p>我们现在一个redis客户端中执行watch命令。</p> <div class="language- extra-class"><pre class="language-text"><code>127.0.0.1:6379&gt; watch name
+OK
+</code></pre></div><p>此时我们打开另一个redis客户端，修改key=name的值。</p> <div class="language- extra-class"><pre class="language-text"><code>127.0.0.1:6379&gt; set name kevin
+OK
+</code></pre></div><p>我们再次回到第一个客户端，开始输入事务的命令块。</p> <div class="language- extra-class"><pre class="language-text"><code>127.0.0.1:6379&gt; multi
+OK
+127.0.0.1:6379&gt; set name abc
+QUEUED
+127.0.0.1:6379&gt; set age 1
+QUEUED
+127.0.0.1:6379&gt; exec
+(nil)
+</code></pre></div><p>可看到通过<code>exec</code>执行事务时，事务并没有执行成功，而是返回“nil”。</p> <p>Java中Jedis使用redis事务，则通过调用以下方法实现，具体命令可参照文档：</p> <div class="language-java extra-class"><pre class="language-java"><code><span class="token annotation punctuation">@Test</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testTransaction</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token class-name">Jedis</span> jedis <span class="token operator">=</span> <span class="token class-name">RedisClient</span><span class="token punctuation">.</span><span class="token function">getJedis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    jedis<span class="token punctuation">.</span><span class="token function">watch</span><span class="token punctuation">(</span><span class="token string">&quot;a&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;c&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">Transaction</span> transaction <span class="token operator">=</span> jedis<span class="token punctuation">.</span><span class="token function">multi</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    transaction<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">&quot;a&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;b&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    transaction<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">&quot;c&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;d&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    transaction<span class="token punctuation">.</span><span class="token function">exec</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="通过lua脚本保证redis的真事务"><a href="#通过lua脚本保证redis的真事务" class="header-anchor">#</a> 通过Lua脚本保证Redis的真事务</h2> <p>redis中自带的事务命令，最致命的前面已经多次提到，那就是<strong>不保证原子性</strong>，所以在使用redis的事务时，一定要谨慎。</p> <p>但如果我们一定要在redis中实现真正的事务应该怎么办呢？redis为我们提供了另外一种更为“灵活”的方式——<strong>Lua脚本</strong>。</p> <p>在这里当然并不会详细讲解Lua的语法规则，我们一步步来看在redis中如何执行Lua脚本，以及Lua是如何运用在redis保证事务的。</p> <p>我们先用Lua脚本在redis中实现调用字符串的<code>set</code>命令，我们先看示例：</p> <div class="language- extra-class"><pre class="language-text"><code>127.0.0.1:6379&gt; eval &quot;return redis.call('set', KEYS[1], ARGV[1])&quot; 1 company bat
+OK
+127.0.0.1:6379&gt; get company
+&quot;bat&quot;
+</code></pre></div><p><code>eval</code>是执行Lua脚本的命令，第二个参数是Lua脚本，第三个参数是一个数字表示一共有多少个key，第四个参数表示key值，第五个参数表示value值，<code>eval [lua scripts] [numskey] [key1] [key2] [value1] [value2] ……</code>。</p> <p>接下来，我们来一个Lua脚本，脚本中包含写入name的值和age的值。</p> <div class="language- extra-class"><pre class="language-text"><code>127.0.0.1:6379&gt; eval &quot;redis.call('set', KEYS[1], ARGV[1]) redis.call('set', KEYS[2], ARGV[2])&quot; 2 name age kevin 25
+(nil)
+127.0.0.1:6379&gt; get name
+&quot;kevin&quot;
+127.0.0.1:6379&gt; get age
+&quot;25&quot;
+</code></pre></div><p>对于简单的Lua脚本通过命令行的方式直接编辑问题不大，但如果是比较复杂得Lua脚本，通常我们会单独写一个Lua脚本文件，然后载入它，例如以下示例：</p> <div class="language-lua extra-class"><pre class="language-lua"><code><span class="token keyword">local</span> exist <span class="token operator">=</span> redis<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token string">'exists'</span><span class="token punctuation">,</span> KEYS<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+<span class="token keyword">if</span> exist <span class="token keyword">then</span>
+    <span class="token keyword">return</span> redis<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token string">'incr'</span><span class="token punctuation">,</span> KEYS<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">else</span>
+    <span class="token keyword">return</span> <span class="token keyword">nil</span>
+<span class="token keyword">end</span>
+</code></pre></div><p>我们将它保存为Lua脚本文件，执行以下命令：</p> <div class="language- extra-class"><pre class="language-text"><code>okevindeMacBook-Air:redis-5.0.7 okevin$ redis-cli --eval ~/Desktop/lua_test.lua view
+(nil)
+</code></pre></div><p>可以看到key=view并不存在，所以返回nil，如果此时我们在redis中定义了一个key=view的值，此时将返回以下信息：</p> <div class="language- extra-class"><pre class="language-text"><code>okevindeMacBook-Air:redis-5.0.7 okevin$ redis-cli --eval ~/Desktop/lua_test.lua view
+(integer) 2
+</code></pre></div><h2 id="jedis中如何载入lua脚本"><a href="#jedis中如何载入lua脚本" class="header-anchor">#</a> Jedis中如何载入Lua脚本</h2> <blockquote><p>有关本节的源码：<a href="https://github.com/yu-linfeng/redis5.x_tutorial/tree/master/code/jedis" target="_blank" rel="noopener noreferrer">https://github.com/yu-linfeng/redis5.x_tutorial/tree/master/code/jedis<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p></blockquote> <p>在Jedis可以直接调用<code>Jedis</code>类的<code>eval</code>方法，第一个参数是Lua脚本，第二个参数是key值，第三个参数是value值。</p> <div class="language-java extra-class"><pre class="language-java"><code><span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testLua</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token class-name">Jedis</span> jedis <span class="token operator">=</span> <span class="token class-name">RedisClient</span><span class="token punctuation">.</span><span class="token function">getJedis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">&gt;</span></span> keys <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    keys<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">&quot;name&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    keys<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">&quot;age&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">&gt;</span></span> values <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    values<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">&quot;kevin&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    values<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">&quot;25&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    jedis<span class="token punctuation">.</span><span class="token function">eval</span><span class="token punctuation">(</span><span class="token string">&quot;redis.call('set', KEYS[1], ARGV[1]) redis.call('set', KEYS[2], ARGV[2])&quot;</span><span class="token punctuation">,</span> keys<span class="token punctuation">,</span> values<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    jedis<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/coderbook/redis5/chapter5.html" class="prev">
+        Java客户端（上）
+      </a></span> <span class="next"><a href="/coderbook/redis5/chapter7.html">
+        分布式锁
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/coderbook/assets/js/app.bd0e8773.js" defer></script><script src="/coderbook/assets/js/2.2e9b2f22.js" defer></script><script src="/coderbook/assets/js/25.6a2ddf93.js" defer></script>
+  </body>
+</html>

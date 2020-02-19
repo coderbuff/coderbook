@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Java客户端（下） | CoderBook</title>
+    <meta name="description" content="CoderBook">
+    <meta name="generator" content="VuePress 1.3.0">
+    
+    
+    <link rel="preload" href="/coderbook/assets/css/0.styles.b2da8d00.css" as="style"><link rel="preload" href="/coderbook/assets/js/app.bd0e8773.js" as="script"><link rel="preload" href="/coderbook/assets/js/2.2e9b2f22.js" as="script"><link rel="preload" href="/coderbook/assets/js/27.7b30b08b.js" as="script"><link rel="prefetch" href="/coderbook/assets/js/10.6f377ed6.js"><link rel="prefetch" href="/coderbook/assets/js/11.f34c1c50.js"><link rel="prefetch" href="/coderbook/assets/js/12.d8b974da.js"><link rel="prefetch" href="/coderbook/assets/js/13.4f10c2cc.js"><link rel="prefetch" href="/coderbook/assets/js/14.07641015.js"><link rel="prefetch" href="/coderbook/assets/js/15.11341f4e.js"><link rel="prefetch" href="/coderbook/assets/js/16.a1027f62.js"><link rel="prefetch" href="/coderbook/assets/js/17.b0b7317a.js"><link rel="prefetch" href="/coderbook/assets/js/18.42995780.js"><link rel="prefetch" href="/coderbook/assets/js/19.e405f35e.js"><link rel="prefetch" href="/coderbook/assets/js/20.f13e781b.js"><link rel="prefetch" href="/coderbook/assets/js/21.ecee6efb.js"><link rel="prefetch" href="/coderbook/assets/js/22.a5802306.js"><link rel="prefetch" href="/coderbook/assets/js/23.d28e9e5c.js"><link rel="prefetch" href="/coderbook/assets/js/24.0abc3809.js"><link rel="prefetch" href="/coderbook/assets/js/25.6a2ddf93.js"><link rel="prefetch" href="/coderbook/assets/js/26.4c465923.js"><link rel="prefetch" href="/coderbook/assets/js/28.24baedb4.js"><link rel="prefetch" href="/coderbook/assets/js/29.f282ec3c.js"><link rel="prefetch" href="/coderbook/assets/js/3.d038ebcd.js"><link rel="prefetch" href="/coderbook/assets/js/30.f7e309d4.js"><link rel="prefetch" href="/coderbook/assets/js/4.9132518f.js"><link rel="prefetch" href="/coderbook/assets/js/5.8cde2cb8.js"><link rel="prefetch" href="/coderbook/assets/js/6.cf9f53d9.js"><link rel="prefetch" href="/coderbook/assets/js/7.a256c028.js"><link rel="prefetch" href="/coderbook/assets/js/8.2227699c.js"><link rel="prefetch" href="/coderbook/assets/js/9.fbfe90ec.js">
+    <link rel="stylesheet" href="/coderbook/assets/css/0.styles.b2da8d00.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/coderbook/" class="home-link router-link-active"><!----> <span class="site-name">CoderBook</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/coderbook/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="/coderbook/es6/index.html" class="nav-link">
+  ElasticSearch6.x
+</a></div><div class="nav-item"><a href="/coderbook/redis5/index.html" class="nav-link">
+  Redis5.x
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/coderbook/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="/coderbook/es6/index.html" class="nav-link">
+  ElasticSearch6.x
+</a></div><div class="nav-item"><a href="/coderbook/redis5/index.html" class="nav-link">
+  Redis5.x
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/coderbook/redis5/" class="sidebar-link">写在前面的话</a></li><li><a href="/coderbook/redis5/chapter1.html" class="sidebar-link">准备工作</a></li><li><a href="/coderbook/redis5/chapter2.html" class="sidebar-link">数据类型</a></li><li><a href="/coderbook/redis5/chapter3.html" class="sidebar-link">命令</a></li><li><a href="/coderbook/redis5/chapter4.html" class="sidebar-link">配置</a></li><li><a href="/coderbook/redis5/chapter5.html" class="sidebar-link">Java客户端（上）</a></li><li><a href="/coderbook/redis5/chapter6.html" class="sidebar-link">事务</a></li><li><a href="/coderbook/redis5/chapter7.html" class="sidebar-link">分布式锁</a></li><li><a href="/coderbook/redis5/chapter8.html" class="active sidebar-link">Java客户端（下）</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="java客户端（下）"><a href="#java客户端（下）" class="header-anchor">#</a> Java客户端（下）</h1> <blockquote><p>有关本章节源码：<a href="https://github.com/yu-linfeng/redis5.x_tutorial/tree/master/code/spring-data-redis" target="_blank" rel="noopener noreferrer">https://github.com/yu-linfeng/redis5.x_tutorial/tree/master/code/spring-data-redis<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p></blockquote> <p>**Java客户端（上）**章节中我们使用了redis的Java客户端的第三方开源框架——Jedis，但目前Java应用已经被Spring（Spring Boot）统治了大半江山，就连一些数据连接操作的封装Spring也不放过，这其中也不乏有redis的封装——<code>Spring Data Redis</code>。关于<code>Spring Data Redis</code>的官方介绍：<a href="https://spring.io/projects/spring-data-redis" target="_blank" rel="noopener noreferrer">https://spring.io/projects/spring-data-redis<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>。</p> <p>使用<code>Spring Data Redis</code>后，你会发现一切变得如此简单，只需要配置文件即可做到<strong>开箱即用</strong>。</p> <p>我们通过IDEA中的<code>Spring Initializer</code>创建Spring Boot工程，并选择<code>Spring Data Redis</code>，主要步骤入下图所示：</p> <p>第一步，创建工程，选择<code>Spring Initializr</code>。</p> <p><img src="resources/1.png" alt="1"></p> <p>第二步，选择SpringBoot的依赖<code>NoSQL -&gt; Spring Data Redis</code>。</p> <p><img src="resources/2.png" alt="2"></p> <p>创建好后，我们通过<code>ymal</code>格式的配置文件<code>application.yml</code>配置相关配置项。</p> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token key atrule">spring</span><span class="token punctuation">:</span>
+  <span class="token key atrule">redis</span><span class="token punctuation">:</span>
+    <span class="token key atrule">host</span><span class="token punctuation">:</span> 127.0.0.1
+    <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">6379</span>
+</code></pre></div><p><code>Spring Data Redis</code>中操作redis的最关键的类是<code>RedisTemplate</code>，了解过<code>Spring Data</code>的朋友应该很熟悉<code>~Template</code>后缀，我们在配置好<code>application.yml</code>后直接写一个测试类体验一下，什么是开箱即用：</p> <div class="language-java extra-class"><pre class="language-java"><code><span class="token keyword">package</span> <span class="token namespace">com<span class="token punctuation">.</span>coderbuff<span class="token punctuation">.</span>springdataredis</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>junit<span class="token punctuation">.</span>jupiter<span class="token punctuation">.</span>api</span><span class="token punctuation">.</span><span class="token class-name">Test</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>beans<span class="token punctuation">.</span>factory<span class="token punctuation">.</span>annotation</span><span class="token punctuation">.</span><span class="token class-name">Autowired</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span>test<span class="token punctuation">.</span>context</span><span class="token punctuation">.</span><span class="token class-name">SpringBootTest</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>data<span class="token punctuation">.</span>redis<span class="token punctuation">.</span>core</span><span class="token punctuation">.</span><span class="token class-name">RedisTemplate</span><span class="token punctuation">;</span>
+
+<span class="token annotation punctuation">@SpringBootTest</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SpringDataRedisApplicationTests</span> <span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@Autowired</span>
+    <span class="token keyword">private</span> <span class="token class-name">RedisTemplate</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">String</span><span class="token punctuation">&gt;</span></span> redisTemplate<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">void</span> <span class="token function">testDefaultRestTemplate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        redisTemplate<span class="token punctuation">.</span><span class="token function">opsForValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">&quot;default_redis_template&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;1&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>什么是开箱即用，这就是开箱即用。我们没有再写任何的类，只需要两行配置即可使用。</p> <p>通常情况下，我们喜欢“封装”，喜欢把<code>redisTemplate.opsForValue().set</code>这样的操作封装成工具类<code>redisUtil.set</code>，所以我们封装一下<code>RedisTemplate</code>，顺带熟悉它的API。</p> <div class="language-java extra-class"><pre class="language-java"><code><span class="token keyword">package</span> <span class="token namespace">com<span class="token punctuation">.</span>coderbuff<span class="token punctuation">.</span>springdataredis<span class="token punctuation">.</span>util</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>beans<span class="token punctuation">.</span>factory<span class="token punctuation">.</span>annotation</span><span class="token punctuation">.</span><span class="token class-name">Autowired</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>data<span class="token punctuation">.</span>redis<span class="token punctuation">.</span>core</span><span class="token punctuation">.</span><span class="token class-name">RedisTemplate</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>stereotype</span><span class="token punctuation">.</span><span class="token class-name">Component</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>concurrent</span><span class="token punctuation">.</span><span class="token class-name">TimeUnit</span><span class="token punctuation">;</span>
+
+<span class="token comment">/**
+ * redis操作工具类
+ * @author okevin
+ * @date 2020/2/18 14:34
+ */</span>
+<span class="token annotation punctuation">@Component</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RedisUtil</span> <span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@Autowired</span>
+    <span class="token keyword">private</span> <span class="token class-name">RedisTemplate</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Object</span><span class="token punctuation">,</span> <span class="token class-name">Object</span><span class="token punctuation">&gt;</span></span> redisTemplate<span class="token punctuation">;</span>
+
+    <span class="token comment">/**
+     * 字符串类型写入操作
+     * @param key key值
+     * @param value value值
+     */</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">set</span><span class="token punctuation">(</span><span class="token class-name">String</span> key<span class="token punctuation">,</span> <span class="token class-name">String</span> value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>redisTemplate<span class="token punctuation">.</span><span class="token function">opsForValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">/**
+     * 可设置过期时间字符串类型写入操作
+     * @param key key值
+     * @param value value值
+     * @param expire 过期时间
+     * @param timeUnit 过期时间单位
+     */</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">set</span><span class="token punctuation">(</span><span class="token class-name">String</span> key<span class="token punctuation">,</span> <span class="token class-name">String</span> value<span class="token punctuation">,</span> <span class="token class-name">Long</span> expire<span class="token punctuation">,</span> <span class="token class-name">TimeUnit</span> timeUnit<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>redisTemplate<span class="token punctuation">.</span><span class="token function">opsForValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> value<span class="token punctuation">,</span> expire<span class="token punctuation">,</span> timeUnit<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">/**
+     * 字符串类型读取操作
+     * @param key key值
+     * @return value值
+     */</span>
+    <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">get</span><span class="token punctuation">(</span><span class="token class-name">String</span> key<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">)</span> <span class="token keyword">this</span><span class="token punctuation">.</span>redisTemplate<span class="token punctuation">.</span><span class="token function">opsForValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>编写测试类：</p> <div class="language-java extra-class"><pre class="language-java"><code><span class="token keyword">package</span> <span class="token namespace">com<span class="token punctuation">.</span>coderbuff<span class="token punctuation">.</span>springdataredis<span class="token punctuation">.</span>util</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>junit<span class="token punctuation">.</span>jupiter<span class="token punctuation">.</span>api</span><span class="token punctuation">.</span><span class="token class-name">Assertions</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>junit<span class="token punctuation">.</span>jupiter<span class="token punctuation">.</span>api</span><span class="token punctuation">.</span><span class="token class-name">Test</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>beans<span class="token punctuation">.</span>factory<span class="token punctuation">.</span>annotation</span><span class="token punctuation">.</span><span class="token class-name">Autowired</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span>test<span class="token punctuation">.</span>context</span><span class="token punctuation">.</span><span class="token class-name">SpringBootTest</span><span class="token punctuation">;</span>
+
+<span class="token comment">/**
+ * @author okevin
+ * @date 2020/2/18 23:14
+ */</span>
+<span class="token annotation punctuation">@SpringBootTest</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RedisUtilTests</span> <span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@Autowired</span>
+    <span class="token keyword">private</span> <span class="token class-name">RedisUtil</span> redisUtil<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testSet</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        redisUtil<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">&quot;redis_util&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;1&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">Assertions</span><span class="token punctuation">.</span><span class="token function">assertEquals</span><span class="token punctuation">(</span><span class="token string">&quot;1&quot;</span><span class="token punctuation">,</span> redisUtil<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">&quot;redis_util&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>实际上，真正要把<code>Spring Data Redis</code>用好，还可以做以下工作：</p> <ul><li>把redis作为Spring的缓存管理</li></ul> <p><em>注意本文使用的是<strong>SpringBoot2.x</strong>与SpringBoot1.x有一定的区别。</em></p> <div class="language-java extra-class"><pre class="language-java"><code><span class="token keyword">package</span> <span class="token namespace">com<span class="token punctuation">.</span>coderbuff<span class="token punctuation">.</span>springdataredis<span class="token punctuation">.</span>config</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>cache<span class="token punctuation">.</span>annotation</span><span class="token punctuation">.</span><span class="token class-name">CachingConfigurerSupport</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>cache<span class="token punctuation">.</span>annotation</span><span class="token punctuation">.</span><span class="token class-name">EnableCaching</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>context<span class="token punctuation">.</span>annotation</span><span class="token punctuation">.</span><span class="token class-name">Bean</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>context<span class="token punctuation">.</span>annotation</span><span class="token punctuation">.</span><span class="token class-name">Configuration</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>data<span class="token punctuation">.</span>redis<span class="token punctuation">.</span>cache</span><span class="token punctuation">.</span><span class="token class-name">RedisCacheManager</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>data<span class="token punctuation">.</span>redis<span class="token punctuation">.</span>connection</span><span class="token punctuation">.</span><span class="token class-name">RedisConfiguration</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>data<span class="token punctuation">.</span>redis<span class="token punctuation">.</span>connection</span><span class="token punctuation">.</span><span class="token class-name">RedisConnectionFactory</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>data<span class="token punctuation">.</span>redis<span class="token punctuation">.</span>core</span><span class="token punctuation">.</span><span class="token class-name">RedisTemplate</span><span class="token punctuation">;</span>
+
+<span class="token comment">/**
+ * redis配置
+ * @author okevin
+ * @date 2020/2/18 14:20
+ */</span>
+<span class="token annotation punctuation">@Configuration</span>
+<span class="token annotation punctuation">@EnableCaching</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RedisConfig</span> <span class="token keyword">extends</span> <span class="token class-name">CachingConfigurerSupport</span> <span class="token punctuation">{</span>
+
+    <span class="token comment">/**
+     * 使用redis作为spring的缓存管理工具
+     * 注意：springboot2.x与springboot1.x此处的区别较大
+     * 在springboot1.x中，要使用redis的缓存管理工具为以下代码：
+     *
+     * public CacheManager cacheManager(RedisTemplate redisTemplate) {
+     *     RedisCacheManager redisCacheManager = new RedisCacheManager(redisTemplate);
+     *     return redisCacheManager;
+     * }
+     *
+     * @param redisConnectionFactory redis连接工厂
+     * @return redis缓存管理
+     */</span>
+    <span class="token annotation punctuation">@Bean</span>
+    <span class="token keyword">public</span> <span class="token class-name">RedisCacheManager</span> <span class="token function">cacheManager</span><span class="token punctuation">(</span><span class="token class-name">RedisConnectionFactory</span> redisConnectionFactory<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">RedisCacheManager</span> redisCacheManager <span class="token operator">=</span> <span class="token class-name">RedisCacheManager</span><span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span>redisConnectionFactory<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> redisCacheManager<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><ul><li>尽管SpringBoot已经为我们构造好了<code>RedisTemplate</code>，但我们可能还是需要定制化注入<code>RedisTemplate</code>。</li></ul> <p>我们可以定制<code>RedisTemplate</code>，例如序列化的方式等，当然这些都不是必须的：</p> <div class="language-java extra-class"><pre class="language-java"><code><span class="token keyword">package</span> <span class="token namespace">com<span class="token punctuation">.</span>coderbuff<span class="token punctuation">.</span>springdataredis<span class="token punctuation">.</span>config</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>cache<span class="token punctuation">.</span>annotation</span><span class="token punctuation">.</span><span class="token class-name">CachingConfigurerSupport</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>cache<span class="token punctuation">.</span>annotation</span><span class="token punctuation">.</span><span class="token class-name">EnableCaching</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>context<span class="token punctuation">.</span>annotation</span><span class="token punctuation">.</span><span class="token class-name">Bean</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>context<span class="token punctuation">.</span>annotation</span><span class="token punctuation">.</span><span class="token class-name">Configuration</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>data<span class="token punctuation">.</span>redis<span class="token punctuation">.</span>cache</span><span class="token punctuation">.</span><span class="token class-name">RedisCacheManager</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>data<span class="token punctuation">.</span>redis<span class="token punctuation">.</span>connection</span><span class="token punctuation">.</span><span class="token class-name">RedisConnectionFactory</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>data<span class="token punctuation">.</span>redis<span class="token punctuation">.</span>core</span><span class="token punctuation">.</span><span class="token class-name">RedisTemplate</span><span class="token punctuation">;</span>
+
+<span class="token comment">/**
+ * redis配置
+ * @author okevin
+ * @date 2020/2/18 14:20
+ */</span>
+<span class="token annotation punctuation">@Configuration</span>
+<span class="token annotation punctuation">@EnableCaching</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RedisConfig</span> <span class="token keyword">extends</span> <span class="token class-name">CachingConfigurerSupport</span> <span class="token punctuation">{</span>
+
+    <span class="token comment">//省略上面的cacheManager注入</span>
+
+    <span class="token annotation punctuation">@Bean</span>
+    <span class="token keyword">public</span> <span class="token class-name">RedisTemplate</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Object</span><span class="token punctuation">,</span> <span class="token class-name">Object</span><span class="token punctuation">&gt;</span></span> <span class="token function">redisTemplate</span><span class="token punctuation">(</span><span class="token class-name">RedisConnectionFactory</span> redisConnectionFactory<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">RedisTemplate</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Object</span><span class="token punctuation">,</span> <span class="token class-name">Object</span><span class="token punctuation">&gt;</span></span> redisTemplate <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RedisTemplate</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        redisTemplate<span class="token punctuation">.</span><span class="token function">setConnectionFactory</span><span class="token punctuation">(</span>redisConnectionFactory<span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token comment">//配置连接工厂</span>
+
+        <span class="token comment">/*使用Jackson序列化和反序列化key、value值，默认使用JDK的序列化方式
+        Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
+        ObjectMapper om = new ObjectMapper();
+        om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);  //指定要序列化的域，ALL表示所有字段、以及set/get方法，ANY是都有包括修饰符private和public
+        om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);   //指定序列化输入的类型，NON_FINAL表示必须是非final修饰的类型
+        jacksonSeial.setObjectMapper(om);
+
+        //以下数据类型通过jackson序列化
+        redisTemplate.setValueSerializer(jacksonSeial);
+        redisTemplate.setKeySerializer(new StringRedisSerializer());
+        redisTemplate.setHashKeySerializer(new StringRedisSerializer());
+        redisTemplate.setHashValueSerializer(jacksonSeial);
+        */</span>
+        redisTemplate<span class="token punctuation">.</span><span class="token function">afterPropertiesSet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> redisTemplate<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>想要学习更多<code>Spring Data Redis</code>，就请打开官网（<a href="https://spring.io/projects/spring-data-redis" target="_blank" rel="noopener noreferrer">https://spring.io/projects/spring-data-redis<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>）尽情探索吧。</p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/coderbook/redis5/chapter7.html" class="prev">
+        分布式锁
+      </a></span> <!----></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/coderbook/assets/js/app.bd0e8773.js" defer></script><script src="/coderbook/assets/js/2.2e9b2f22.js" defer></script><script src="/coderbook/assets/js/27.7b30b08b.js" defer></script>
+  </body>
+</html>
