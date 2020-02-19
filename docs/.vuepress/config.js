@@ -7,7 +7,8 @@ module.exports = {
         //repoLabel: 'My GitHub',
 	  	nav: [
 	  		{ text: '首页', link: '/' },
-	  		{ text: 'ElasticSearch6.x', link: '/es6/index.md' }
+              { text: 'ElasticSearch6.x', link: '/es6/index.md' },
+              { text: 'Redis5.x', link: '/redis5/index.md' },
         ],
         sidebar: {
             '/es6/':[
@@ -22,7 +23,18 @@ module.exports = {
                 'chapter8',
                 'chapter9',
                 'chapter10',
-                'chapter11',
+                'chapter11'
+            ],
+            '/redis5/':[
+                '',
+                'chapter1',
+                'chapter2',
+                'chapter3',
+                'chapter4',
+                'chapter5',
+                'chapter6',
+                'chapter7',
+                'chapter8'
             ]
         }
 	}
